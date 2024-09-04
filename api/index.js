@@ -13,6 +13,6 @@ export default async function handler(req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json({ screenshotUrl: data.screenshot });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to take screenshot' });
+    res.status(500).json({ error: 'Failed to take screenshot' }); //sla
   }
 }
