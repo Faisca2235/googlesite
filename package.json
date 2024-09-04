@@ -8,6 +8,6 @@
     "start": "vercel start"
   },
   "dependencies": {
-    "node-fetch": "^2.6.1" // Certifique-se de usar uma versão compatível
+    "node-fetch": "^2.6.1" // Certifique-se de usar uma versão compatíveld
   }
 }
