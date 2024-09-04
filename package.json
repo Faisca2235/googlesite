@@ -1,8 +1,13 @@
 {
-  "name": "screenshot-api",
+  "name": "googlesite-screenshot",
   "version": "1.0.0",
   "main": "api/index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "start": "vercel start"
+  },
   "dependencies": {
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1" // Certifique-se de usar uma versão compatível
   }
 }
