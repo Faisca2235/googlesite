@@ -1,18 +1,30 @@
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'; // Certifique-se de ter node-fetch instalado
 
 export default async function handler(req, res) {
+  // Habilitar CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+
   const { url } = req.query;
-  
+
   if (!url) {
-    return res.status(400).json({ error: 'URL is required' });
+    return res.status(400).json({ error: 'No URL provided' });
   }
 
   try {
-    const response = await fetch(`https://api.screenshotapi.net/screenshot?token=HK3CH8H-QFR4WVM-N3DJ92G-YK4SX4J&url=${encodeURIComponent(url)}&full_page=true`);
-    const data = await response.json();
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json({ screenshotUrl: data.screenshot });
+    const apiUrl = `http://api.screenshotlayer.com/api/capture?url=${encodeURIComponent(url)}&format=png`;
+
+    const response = await fetch(apiUrl);
+
+    if (!response.ok) {
+      throw new Error('Failed to capture screenshot');
+    }
+
+    const screenshotBuffer = await response.buffer();
+    const screenshotUrl = `data:image/png;base64,${screenshotBuffer.toString('base64')}`;
+    
+    return res.status(200).json({ screenshotUrl });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to take screenshot' }); //sla
+    return res.status(500).json({ error: error.message });
   }
 }
