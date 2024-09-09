@@ -1,13 +1,16 @@
 {
-  "name": "googlesite-screenshot",
+  "name": "screenshot-api",
   "version": "1.0.0",
-  "main": "api/index.js",
+  "description": "API para captura de tela",
+  "main": "index.js",
   "scripts": {
-    "dev": "vercel dev",
-    "build": "vercel build",
-    "start": "vercel start"
+    "start": "node index.js"
   },
   "dependencies": {
-    "node-fetch": "^2.6.1" // Certifique-se de usar uma versão compatíveld
-  }
+    "express": "^4.18.2",  // Se você estiver usando Express.js
+    "cors": "^2.8.5"       // Adicionando suporte a CORS
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
 }
